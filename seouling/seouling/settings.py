@@ -101,6 +101,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "DATE_INPUT_FORMATS": ["%Y-%m-%d"],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'utils.authentication.TokenAuthentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+}
+
+TOKEN_PREFIX = 'Bearer'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
