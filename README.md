@@ -59,6 +59,7 @@ Sign up
   "sns_token": String(Optional),
   "email": String(Optional),
   "password": String(Optional),
+  "login_type": String,
   "nickname": String,
   "profile_picture": String(Optional)
 }
@@ -67,7 +68,18 @@ Sign up
 **response**
 ```
 {
-  "message": String
+  "data": {
+    "id": Integer,
+    "sns_token": String,
+    "email": String,
+    "password": String,
+    "nickname": String,
+    "profile_picture": String,
+    "is_push": Boolean,
+    "login_type": Integer,
+    "last_login": String,
+    "created_at": String
+  }
 }
 ```
 
@@ -84,7 +96,7 @@ login
 **request**
 ```
 {
-  "username": String,
+  "email": String,
   "password": String
 }
 ```
