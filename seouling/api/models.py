@@ -1,18 +1,38 @@
 from django.db import models
 
 
-# Create your models here.
+def user_profile_upload(instance, filename):
+    """
+    e.g)
+        images/user/{user_id}/{filename}
+        images/user/122/tmp.png
+    """
+    path = "images/user/{}/{}".format(instance.id, filename)
+    return path
+
+
 class User(models.Model):
     nickname = models.CharField(max_length=50, unique=True)
-    profile_picture = models.TextField(null=True)
+    profile_picture = models.ImageField(upload_to=user_profile_upload, null=True)
     email = models.CharField(max_length=50, null=True, unique=True)
     password = models.TextField(null=True)
-    token = models.CharField(max_length=100, unique=True)
+    token = models.CharField(max_length=100, db_index=True)
     sns_token = models.CharField(max_length=100, null=True, unique=True)
     is_push = models.BooleanField(default=True)
     login_type = models.IntegerField() # 0: email, 1: facebook, 2: kakao, 3: google
     last_login = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            saved_image = self.profile_picture
+            self.profile_picture = None
+            super(User, self).save(*args, **kwargs)
+            self.profile_picture = saved_image
+            if 'force_insert' in kwargs:
+                kwargs.pop('force_insert')
+
+        super(User, self).save(*args, **kwargs)
 
 
 class Plan(models.Model):

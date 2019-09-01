@@ -7,6 +7,7 @@ from utils.helper import create_token
 
 
 class SigninSNS(APIView):
+    permission_classes = [AllowAny]
 
     def post(self, request):
         sns_token = request.data.get('sns_token')

@@ -109,7 +109,16 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.IsAuthenticated',
     # ),
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers .JSONParser'
+    # ]\
 }
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = os.getenv('AWS_S3_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_S3_BUCKET_NAME')
+AWS_QUERYSTRING_AUTH = False
 
 TOKEN_PREFIX = 'Bearer'
 

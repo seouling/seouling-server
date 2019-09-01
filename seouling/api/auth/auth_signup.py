@@ -4,7 +4,6 @@ from api.models import User
 from rest_framework.permissions import AllowAny
 import hashlib
 from api.auth.serializer import UserSerializer
-from utils.helper import upload_image_to_s3
 
 
 class Signup(APIView):
@@ -14,7 +13,7 @@ class Signup(APIView):
         sns_token = request.data.get('sns_token')
         email = request.data.get('email')
         nickname = request.data.get('nickname')
-        profile_picture = request.FILES.get('profile_picture')
+        profile_picture = request.data.get('profile_picture')
         login_type = request.data.get('login_type')
 
         if nickname is None:
@@ -24,12 +23,13 @@ class Signup(APIView):
             return Response(status=200, data={'message': '이메일 토큰 SNS 토큰이 없습니다.'})
 
         data = {}
+        data['nickname'] = nickname
+        data['login_type'] = login_type
 
-        if login_type > 0:
+        if login_type > '0':
             # Todo: SNS 계정 체크
             pass
 
-        data['login_type'] = login_type
         if email is not None:
             data['email'] = email
             password = request.data.get('password')
@@ -39,7 +39,7 @@ class Signup(APIView):
             data['sns_token'] = sns_token
 
         if profile_picture is not None:
-            data['profile_picture'] = upload_image_to_s3(profile_picture)
+            data['profile_picture'] = profile_picture
 
         user = User(**data)
         user.save()
