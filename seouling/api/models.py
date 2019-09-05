@@ -40,10 +40,7 @@ class Plan(models.Model):
     name = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
-    picture = models.TextField()
-    is_main = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    order = models.IntegerField()
 
 
 class Schedule(models.Model):
@@ -62,9 +59,30 @@ class Spot(models.Model):
     # other fields...
 
 
+def spot_image_upload(instance, filename):
+    """
+    e.g)
+        images/spot/{spot_id}/{filename}
+        images/spot/123/tmp.png
+    """
+    path = "images/spot/{}/{}".format(instance.id, filename)
+    return path
+
+
 class SpotPicture(models.Model):
-    spot = models.ForeignKey('Spot', on_delete=models.CASCADE)
-    url = models.CharField(max_length=50)
+    spot = models.ForeignKey('Spot', related_name='pictures', on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to=spot_image_upload, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            saved_image = self.picture
+            self.picture = None
+            super(SpotPicture, self).save(*args, **kwargs)
+            self.picture = saved_image
+            if 'force_insert' in kwargs:
+                kwargs.pop('force_insert')
+
+        super(SpotPicture, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):

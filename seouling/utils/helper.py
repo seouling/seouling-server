@@ -13,3 +13,7 @@ def create_token():
             User.objects.get(token=token)
         except ObjectDoesNotExist:
             return token
+
+
+def get_after_url(path, last_id):
+    return f"{path}?last_id={last_id}"

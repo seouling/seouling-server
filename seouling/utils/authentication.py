@@ -10,7 +10,7 @@ from django.utils.encoding import smart_text
 class TokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
         token = get_authorization_header(request).split()
-        if token is None:
+        if token is None or len(token) <= 0:
             return None
 
         if len(token) <= 1:
