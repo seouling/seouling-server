@@ -7,10 +7,13 @@ class PlanSerializer(serializers.ModelSerializer):
     scheme = serializers.SerializerMethodField()
 
     def get_picture(self, obj):
-        schedule = obj.schedules.first()
-        morning_spot = schedule.morning.first()
-        picture = morning_spot.pictures.first().picture
-        return picture.url
+        try:
+            schedule = obj.schedules.first()
+            morning_spot = schedule.morning.first()
+            picture = morning_spot.pictures.first().picture
+            return picture.url
+        except AttributeError:
+            return ""
 
     def get_scheme(self, obj):
         return f"seoul://plan/{obj.id}"

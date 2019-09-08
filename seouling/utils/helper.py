@@ -2,6 +2,7 @@ from api.models import User
 import random
 import string
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import timedelta
 
 
 def create_token():
@@ -15,5 +16,6 @@ def create_token():
             return token
 
 
-def get_after_url(path, last_id):
-    return f"{path}?last_id={last_id}"
+def daterange(start_date, end_date):
+    for n in range(int((end_date - start_date).days)):
+        yield start_date + timedelta(n)

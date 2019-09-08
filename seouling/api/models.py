@@ -47,7 +47,6 @@ class Plan(models.Model):
 class Schedule(models.Model):
     plan = models.ForeignKey(Plan, related_name='schedules', on_delete=models.CASCADE)
     date = models.DateField()
-    order = models.IntegerField()
     morning = models.ManyToManyField('Spot', related_name="morning")
     after_noon = models.ManyToManyField('Spot', related_name="after_noon")
     night = models.ManyToManyField('Spot', related_name="night")
