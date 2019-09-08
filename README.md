@@ -160,7 +160,6 @@ Get Plans
       "scheme": String,
       "name": String,
       "picture": String,
-      "is_main": Boolean,
       "created_date": String,
       "start_date": String,
       "end_date": String
@@ -189,7 +188,8 @@ Create Plans
 ```
 {
   "start_date": String,
-  "end_date": String
+  "end_date": String,
+  "name": String
 },
 ```
 
@@ -201,7 +201,6 @@ Create Plans
     "scheme": String,
     "name": String,
     "picture": String,
-    "is_main": Boolean,
     "created_date": String,
     "start_date": String,
     "end_date": String
@@ -223,7 +222,6 @@ Edit Plans
 **request**
 ```
 {
-  "is_main": Boolean(Optional),
   "name": String(Optional),
   "start_date": String(Optional),
   "end_date": String(Optional),
@@ -238,7 +236,6 @@ Edit Plans
     "scheme": String,
     "name": String,
     "picture": String,
-    "is_main": Boolean,
     "created_date": String,
     "start_date": String,
     "end_date": String
@@ -263,9 +260,7 @@ Delete Plans
 **response**
 ```
 {
-  "data": {
-    "message": String
-  }
+  "message": String
 }
 ```
 
@@ -283,7 +278,6 @@ Get Plan's schedule
 **param**
 ```
 {
-  order: Integer(default 0)
 }
 ```
 
