@@ -280,7 +280,6 @@ Get Plan's schedule
 **param**
 ```
 {
-  order: Integer(default 0)
 }
 ```
 
