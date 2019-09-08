@@ -260,9 +260,7 @@ Delete Plans
 **response**
 ```
 {
-  "data": {
-    "message": String
-  }
+  "message": String
 }
 ```
 
