@@ -189,7 +189,8 @@ Create Plans
 ```
 {
   "start_date": String,
-  "end_date": String
+  "end_date": String,
+  "name": String
 },
 ```
 
