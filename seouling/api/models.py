@@ -22,6 +22,7 @@ class User(models.Model):
     login_type = models.IntegerField() # 0: email, 1: facebook, 2: kakao, 3: google
     last_login = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_authenticated = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if self.id is None:

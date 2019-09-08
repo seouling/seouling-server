@@ -1,24 +1,25 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.plan.serializer import PlanSerializer
-from utils.helper import get_after_url
-from api.models import Plan, Schedule
+from utils.page_serializer import PageSerializer
+from api.models import Plan
+from django.core.paginator import Paginator
 
 
 class PlanView(APIView):
 
     def get(self, request):
-        last_id = request.query_params.get('last_id')
+        page = request.query_params.get('page', 1)
 
-        plan_query = Plan.objects.filter(user_id=request.user.id)
-        if last_id is not None:
-            plan_query = plan_query.filter(id__lt=last_id)
+        plan_query = Plan.objects.filter(user_id=request.user.id).order_by('-id')
 
-        last_plan = plan_query.values('id').order_by('-id').last()
-        plans = plan_query.order_by('-id')[:10]
+        paginator = Paginator(plan_query, 10)
+        page = paginator.page(page)
 
         result = dict()
-        result['data'] = PlanSerializer(plans, many=True).data
-        result['paging'] = {"after": get_after_url('/plan', last_plan['id'])} if last_plan is not None else {}
+        result['data'] = PlanSerializer(page.object_list, many=True).data
+        result['paging'] = PageSerializer(page, context={'request': request}).data
 
         return Response(status=200, data=result)
+
+

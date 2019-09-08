@@ -10,7 +10,7 @@ class PlanSerializer(serializers.ModelSerializer):
         schedule = obj.schedules.first()
         morning_spot = schedule.morning.first()
         picture = morning_spot.pictures.first().picture
-        return picture
+        return picture.url
 
     def get_scheme(self, obj):
         return f"seoul://plan/{obj.id}"

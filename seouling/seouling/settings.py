@@ -107,7 +107,7 @@ REST_FRAMEWORK = {
         'utils.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': (
-        'utils.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
