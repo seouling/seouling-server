@@ -337,8 +337,8 @@ Edit Plan's schedule
 ```
 {
   "type": "morning" / "after_noon" / "night",
-  "start_date": String,
-  "end_date": String
+  "add": List(Integer),
+  "delete": List(Integer)
 }
 ```
 
