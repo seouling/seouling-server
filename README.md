@@ -17,7 +17,7 @@ API Docs
 [/spot/{spot_id}](#spotspot_id)<br/>
 [/spot/{spot_id}/comment](#spotspot_idcomment)<br/>
 [/myseoul](#myseoul)<br/>
-[/mypage](#mypage)<br/>
+[/me](#mypage)<br/>
 
 ## /auth/token
 #### -POST
@@ -556,6 +556,7 @@ Get Spot's message
 {
   "data": [
     {
+      "id": Integer,
       "author_name": String,  
       "author_picture": String,  
       "content": String,
@@ -592,8 +593,7 @@ Post Spot's message
 ```
 {
   "data": {
-    "author_name": String,  
-    "author_picture": String,  
+    "author": User,  
     "content": String,
     "created_date": String
   }
@@ -628,7 +628,7 @@ Get MySeoul Info
 }
 ```
 
-## /mypage
+## /me
 #### -GET
 Get my Info
 
