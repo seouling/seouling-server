@@ -337,8 +337,8 @@ Edit Plan's schedule
 ```
 {
   "type": "morning" / "after_noon" / "night",
-  "add": List(spot ids),
-  "delete": List(spot ids)
+  "start_date": String,
+  "end_date": String
 }
 ```
 
