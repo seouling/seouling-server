@@ -95,16 +95,16 @@ class SpotPicture(models.Model):
 
 
 class Comment(models.Model):
-    spot = models.ForeignKey('Spot', on_delete=models.CASCADE)
+    spot = models.ForeignKey('Spot', related_name="comments", on_delete=models.CASCADE)
     writer = models.ForeignKey('User', on_delete=models.PROTECT)
     content = models.TextField()
 
 
 class Like(models.Model):
-    spot = models.ForeignKey('Spot', on_delete=models.CASCADE)
+    spot = models.ForeignKey('Spot', related_name="likes", on_delete=models.CASCADE)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
 
 
 class Visit(models.Model):
-    spot = models.ForeignKey('Spot', on_delete=models.CASCADE)
+    spot = models.ForeignKey('Spot', related_name="visits", on_delete=models.CASCADE)
     user = models.ForeignKey('User', on_delete=models.PROTECT)

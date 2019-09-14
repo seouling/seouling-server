@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 import datetime
 from utils.helper import daterange
 from django.db import transaction
+from django.db.models import Prefetch
 
 
 class PlanView(APIView):
@@ -14,7 +15,8 @@ class PlanView(APIView):
     def get(self, request):
         page = request.query_params.get('page', 1)
 
-        plan_query = Plan.objects.filter(user_id=request.user.id).order_by('-id')
+        # Todo: 쿼리 최적화 필요
+        plan_query = Plan.objects.filter(user_id=request.user.id).order_by('-id').prefetch_related('schedules')
 
         paginator = Paginator(plan_query, 10)
         page = paginator.page(page)

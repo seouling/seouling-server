@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from api.models import Plan
+from django.db.models import Prefetch
 
 
 class PlanSerializer(serializers.ModelSerializer):

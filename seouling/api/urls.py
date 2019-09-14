@@ -5,4 +5,5 @@ urlpatterns = [
     path('', include('api.auth.urls')),
     path('', include('api.schedule.urls')),
     path('', include('api.tag.urls')),
+    path('', include('api.spot.urls')),
 ]
