@@ -8,11 +8,11 @@ from rest_framework.exceptions import NotFound
 class ScheduleIdView(APIView):
 
     def put(self, request, schedule_id):
-        schedule_query = Schedule.objects.filter(plan_id=schedule_id)
-        if not schedule_query.exists():
+        try:
+            schedule = Schedule.objects.get(plan_id=schedule_id)
+        except Schedule.DoesNotExist:
             raise NotFound('해당 id로 찾을 수 없습니다.')
 
-        schedule = schedule_query.first()
         type = request.data.get('type')
         add_list = request.data.get('add', [])
         remove_list = request.data.get('remove', [])

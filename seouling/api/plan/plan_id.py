@@ -21,7 +21,7 @@ class PlanIdView(APIView):
 
         return Response(status=200, data=result)
 
-    def delete(self, request, plan_id):
+    def delete(self, _, plan_id):
         try:
             plan = Plan.objects.get(id=plan_id)
         except Plan.DoesNotExist:

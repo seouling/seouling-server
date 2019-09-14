@@ -11,9 +11,10 @@ class PlanScheduleView(APIView):
     def get(self, request, plan_id):
         page = request.query_params.get('page', 1)
 
-        schedule_query = Schedule.objects.filter(plan_id=plan_id).order_by('date')
+        schedule_query = Schedule.objects.filter(plan_id=plan_id).order_by('date')\
+            .prefetch_related('morning', 'after_noon', "night")
 
-        paginator = Paginator(schedule_query, 10)
+        paginator = Paginator(schedule_query, 3)
         page = paginator.page(page)
 
         result = dict()
