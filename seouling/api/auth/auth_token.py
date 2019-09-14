@@ -13,6 +13,6 @@ class CheckToken(APIView):
             User.objects.get(token=request.data['token'])
 
         except ObjectDoesNotExist:
-            return Response(status=404, data={'message': '사용할 수 없는 토큰입니다.'})
+            return Response(status=400, data={'message': '사용할 수 없는 토큰입니다.'})
 
         return Response(status=200, data={'message': '사용 가능한 토큰입니다.'})

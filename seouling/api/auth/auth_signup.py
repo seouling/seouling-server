@@ -17,10 +17,10 @@ class Signup(APIView):
         login_type = request.data.get('login_type')
 
         if nickname is None:
-            return Response(status=200, data={'message': '닉네임이 존재하지 않습니다.'})
+            return Response(status=400, data={'message': '닉네임이 존재하지 않습니다.'})
 
         if sns_token is None and email is None:
-            return Response(status=200, data={'message': '이메일 토큰 SNS 토큰이 없습니다.'})
+            return Response(status=400, data={'message': '이메일 토큰 SNS 토큰이 없습니다.'})
 
         data = {}
         data['nickname'] = nickname

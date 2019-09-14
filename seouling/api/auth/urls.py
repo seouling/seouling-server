@@ -5,8 +5,8 @@ from api.auth.auth_signup import Signup
 from api.auth.auth_token import CheckToken
 
 urlpatterns = [
-    path('token', CheckToken.as_view()),
-    path('signup', Signup.as_view()),
-    path('signin/email', SigninEmail.as_view()),
-    path('signin/sns', SigninSNS.as_view())
+    path('auth/token', CheckToken.as_view()),
+    path('auth/signup', Signup.as_view()),
+    path('auth/signin/email', SigninEmail.as_view()),
+    path('auth/signin/sns', SigninSNS.as_view())
 ]
