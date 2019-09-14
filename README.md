@@ -330,16 +330,15 @@ Edit Plan's schedule
 
 **param**
 ```
-{
-  "type": "morning" / "after_noon" / "night"
-}
+
 ```
 
 **request**
 ```
 {
-  "add": List(spot ids),
-  "delete": List(spot ids)
+  "type": "morning" / "after_noon" / "night",
+  "add": List(Integer),
+  "remove": List(Integer)
 }
 ```
 
