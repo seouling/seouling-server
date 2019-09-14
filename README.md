@@ -338,7 +338,7 @@ Edit Plan's schedule
 {
   "type": "morning" / "after_noon" / "night",
   "add": List(Integer),
-  "delete": List(Integer)
+  "remove": List(Integer)
 }
 ```
 
