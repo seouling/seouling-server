@@ -19,7 +19,7 @@ class User(models.Model):
     token = models.CharField(max_length=100, db_index=True)
     sns_token = models.CharField(max_length=100, null=True, unique=True)
     is_push = models.BooleanField(default=True)
-    login_type = models.IntegerField() # 0: email, 1: facebook, 2: kakao, 3: google
+    login_type = models.IntegerField()# 0: email, 1: facebook, 2: kakao, 3: google
     last_login = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_authenticated = models.BooleanField(default=True)
@@ -98,13 +98,17 @@ class Comment(models.Model):
     spot = models.ForeignKey('Spot', related_name="comments", on_delete=models.CASCADE)
     writer = models.ForeignKey('User', on_delete=models.PROTECT)
     content = models.TextField()
+    score = models.IntegerField(default=5)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Like(models.Model):
     spot = models.ForeignKey('Spot', related_name="likes", on_delete=models.CASCADE)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Visit(models.Model):
     spot = models.ForeignKey('Spot', related_name="visits", on_delete=models.CASCADE)
     user = models.ForeignKey('User', on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)

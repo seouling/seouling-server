@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models import Plan, Spot, SpotPicture, User, Schedule, Tag, TagItem
+from api.models import Plan, Spot, SpotPicture, User, Schedule, Tag, TagItem, Comment
 
 # Register your models here.
 admin.site.register(Plan)
@@ -9,3 +9,4 @@ admin.site.register(SpotPicture)
 admin.site.register(User)
 admin.site.register(Tag)
 admin.site.register(TagItem)
+admin.site.register(Comment)
