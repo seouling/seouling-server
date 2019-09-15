@@ -12,6 +12,17 @@ class SpotSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'content', 'pictures', 'like', 'visitor')
 
 
+class SpotSimpleSerializer(serializers.ModelSerializer):
+    picture = serializers.SerializerMethodField()
+
+    def get_picture(self, obj):
+        return obj.pictures.first()
+
+    class Meta:
+        model = Spot
+        fields = ('id', 'name', 'content', 'picture')
+
+
 class CommentSerializer(serializers.ModelSerializer):
     writer = UserSimpleSerializer()
 

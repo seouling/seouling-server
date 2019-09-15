@@ -7,11 +7,15 @@ from django.core.paginator import Paginator
 import datetime
 from utils.helper import daterange
 from django.db import transaction
-from django.db.models import Prefetch
+# from drf_yasg import openapi
+# from drf_yasg.utils import swagger_auto_schema
+
+# plan_response = openapi.Response('response description', PlanSerializer)
+# test_param = openapi.Parameter('test', openapi.IN_QUERY, description="test manual param", type=openapi.TYPE_BOOLEAN)
 
 
 class PlanView(APIView):
-
+    # @swagger_auto_schema(manual_parameters=[test_param], responses={200: plan_response})
     def get(self, request):
         page = request.query_params.get('page', 1)
 
@@ -20,6 +24,8 @@ class PlanView(APIView):
 
         paginator = Paginator(plan_query, 10)
         page = paginator.page(page)
+        page.per_page = paginator.per_page
+        page.count = paginator.count
 
         result = dict()
         result['data'] = PlanSerializer(page.object_list, many=True).data

@@ -4,6 +4,8 @@ from rest_framework import serializers
 class PageSerializer(serializers.Serializer):
     before = serializers.SerializerMethodField()
     after = serializers.SerializerMethodField()
+    count = serializers.IntegerField()
+    per_page = serializers.IntegerField()
 
     def get_before(self, obj):
         if obj.has_previous():
@@ -18,4 +20,4 @@ class PageSerializer(serializers.Serializer):
         return None
 
     class Meta:
-        fields = ('before', 'after')
+        fields = ('before', 'after' 'count', 'per_page')

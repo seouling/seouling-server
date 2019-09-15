@@ -1,9 +1,10 @@
+from django.db.models import Prefetch
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.schedule.serializer import ScheduleSerializer
 from django.core.paginator import Paginator
 from utils.page_serializer import PageSerializer
-from api.models import Schedule
+from api.models import Schedule, Spot
 
 
 class PlanScheduleView(APIView):
@@ -16,6 +17,8 @@ class PlanScheduleView(APIView):
 
         paginator = Paginator(schedule_query, 3)
         page = paginator.page(page)
+        page.count = paginator.count
+        page.per_page = paginator.per_page
 
         result = dict()
         result['data'] = ScheduleSerializer(page.object_list, many=True).data

@@ -13,6 +13,8 @@ class SpotIdCommentView(APIView):
         comment_query = Comment.objects.filter(spot_id=spot_id)
         paginator = Paginator(comment_query, 10)
         page = paginator.page(page)
+        page.count = paginator.count
+        page.per_page = paginator.per_page
 
         result = dict()
         result['data'] = CommentSerializer(page.object_list, many=True).data
