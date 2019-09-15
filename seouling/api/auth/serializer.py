@@ -5,7 +5,7 @@ from api.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ('password', 'password', 'token', 'sns_token', 'is_authenticated')
+        exclude = ('password', 'token', 'sns_token', 'is_authenticated')
 
 
 class UserSimpleSerializer(serializers.ModelSerializer):

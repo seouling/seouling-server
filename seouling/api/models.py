@@ -96,7 +96,7 @@ class SpotPicture(models.Model):
 
 class Comment(models.Model):
     spot = models.ForeignKey('Spot', related_name="comments", on_delete=models.CASCADE)
-    writer = models.ForeignKey('User', on_delete=models.PROTECT)
+    writer = models.ForeignKey('User', related_name="comments", on_delete=models.PROTECT)
     content = models.TextField()
     score = models.IntegerField(default=5)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -104,11 +104,11 @@ class Comment(models.Model):
 
 class Like(models.Model):
     spot = models.ForeignKey('Spot', related_name="likes", on_delete=models.CASCADE)
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', related_name="likes", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Visit(models.Model):
     spot = models.ForeignKey('Spot', related_name="visits", on_delete=models.CASCADE)
-    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    user = models.ForeignKey('User', related_name="visits", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
