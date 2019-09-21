@@ -616,13 +616,16 @@ Get MySeoul Info
 **response**
 ```
 {
-  "data": [
-    {
-      "order": Number,
-      "picture": String
+    "data": {
+        "checked": [
+            Spot
+        ],
+        "not_checked": [
+            Spot
+        ],
+        "amount_count": Integer,
+        "visit_count": Integer
     }
-    ...
-  ]
 }
 ```
 
