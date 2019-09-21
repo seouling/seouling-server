@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny
 from django.core.exceptions import ObjectDoesNotExist
 import hashlib
 from utils.helper import create_token
+from api.auth.serializer import UserSerializer
 
 
 class SigninEmail(APIView):
@@ -27,4 +28,4 @@ class SigninEmail(APIView):
         user.token = create_token()
         user.save()
 
-        return Response(status=200, data={'token': user.token})
+        return Response(status=200, data={'data': UserSerializer(user).data})

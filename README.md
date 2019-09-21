@@ -52,6 +52,7 @@ Sign up
 |Key|Value|
 |---|-----|
 |Content-Type| application/json |
+|Language| ko/en |
 
 **request**
 ```
@@ -61,7 +62,7 @@ Sign up
   "password": String(Optional),
   "login_type": String,
   "nickname": String,
-  "profile_picture": String(Optional)
+  "profile_picture": String(Optional), 
 }
 ```
 

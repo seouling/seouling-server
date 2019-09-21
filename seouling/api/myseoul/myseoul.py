@@ -1,8 +1,7 @@
-from django.db.models import Prefetch
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.spot.serializer import SpotMySeoulSerializer
-from api.models import Spot, Visit
+from api.models import Spot
 from rest_framework.exceptions import ParseError
 
 

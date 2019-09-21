@@ -25,7 +25,7 @@ SECRET_KEY = 'ih$rp1l$am6p@ezw36fz$k_4r+_zlt@mmkwme9d2r$#qp3*pfp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'seouling-server.herokuapp.com']
+ALLOWED_HOSTS = ['172.30.1.51', '127.0.0.1', 'seouling-server.herokuapp.com']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'policy'
 ]
 
 
@@ -55,10 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'seouling.urls'
 
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

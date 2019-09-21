@@ -20,8 +20,9 @@ class PlanScheduleView(APIView):
         page.count = paginator.count
         page.per_page = paginator.per_page
 
+        locale = request.META.get('HTTP_LOCALE')
         result = dict()
-        result['data'] = ScheduleSerializer(page.object_list, many=True).data
+        result['data'] = ScheduleSerializer(page.object_list, many=True, context={"locale": locale}).data
         result['paging'] = PageSerializer(page, context={'request': request}).data
 
         return Response(status=200, data=result)

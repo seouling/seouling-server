@@ -21,6 +21,7 @@ from .schema_view import schema_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
+    path('policy/', include('policy.urls')),
     url(r'^v1/swagger(?P<format>\.json|\.yaml)/$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^v1/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^v1/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc-v1'),

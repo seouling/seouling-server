@@ -19,7 +19,7 @@ class User(models.Model):
     token = models.CharField(max_length=100, db_index=True)
     sns_token = models.CharField(max_length=100, null=True, unique=True)
     is_push = models.BooleanField(default=True)
-    login_type = models.IntegerField()
+    login_type = models.CharField(max_length=30)
     last_login = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_authenticated = models.BooleanField(default=True)
@@ -62,12 +62,22 @@ class TagItem(models.Model):
 
 
 class Spot(models.Model):
-    name = models.CharField(max_length=50)
-    content = models.TextField()
-    district = models.CharField(max_length=20)
-    gu = models.CharField(max_length=20)
+    gu = models.IntegerField(default=0)
     category = models.IntegerField(default=0)
-    # other fields...
+    kr_name = models.CharField(max_length=100)
+    en_name = models.CharField(max_length=100)
+    kr_content = models.TextField()
+    en_content = models.TextField()
+    kr_operation = models.CharField(max_length=50)
+    en_operation = models.CharField(max_length=50)
+    recommend_time = models.CharField(max_length=30)
+    kr_subway = models.CharField(max_length=30)
+    en_subway = models.CharField(max_length=30)
+    line = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20)
+    homepage = models.CharField(max_length=100)
+    kr_address = models.CharField(max_length=100)
+    en_address = models.CharField(max_length=100)
 
 
 def spot_image_upload(instance, filename):
