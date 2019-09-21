@@ -147,7 +147,7 @@ Get Plans
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -421,7 +421,7 @@ Search Spot from tag
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -472,7 +472,7 @@ Search Spot from name
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -546,7 +546,7 @@ Get Spot's message
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -556,8 +556,7 @@ Get Spot's message
   "data": [
     {
       "id": Integer,
-      "author_name": String,  
-      "author_picture": String,  
+      "author": User,
       "content": String,
       "created_date": String
     }
