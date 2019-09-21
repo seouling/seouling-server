@@ -23,6 +23,13 @@ class SpotSimpleSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'content', 'picture')
 
 
+class SpotMySeoulSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Spot
+        fields = ('id', 'name', 'gu', 'category')
+
+
 class CommentSerializer(serializers.ModelSerializer):
     writer = UserSimpleSerializer()
 

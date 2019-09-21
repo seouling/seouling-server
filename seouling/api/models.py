@@ -19,7 +19,7 @@ class User(models.Model):
     token = models.CharField(max_length=100, db_index=True)
     sns_token = models.CharField(max_length=100, null=True, unique=True)
     is_push = models.BooleanField(default=True)
-    login_type = models.IntegerField()# 0: email, 1: facebook, 2: kakao, 3: google
+    login_type = models.IntegerField()
     last_login = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_authenticated = models.BooleanField(default=True)
@@ -65,6 +65,8 @@ class Spot(models.Model):
     name = models.CharField(max_length=50)
     content = models.TextField()
     district = models.CharField(max_length=20)
+    gu = models.CharField(max_length=20)
+    category = models.IntegerField(default=0)
     # other fields...
 
 

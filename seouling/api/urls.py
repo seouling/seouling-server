@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('api.tag.urls')),
     path('', include('api.spot.urls')),
     path('', include('api.me.urls')),
+    path('', include('api.myseoul.urls')),
 ]

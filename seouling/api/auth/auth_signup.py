@@ -22,11 +22,11 @@ class Signup(APIView):
         if sns_token is None and email is None:
             return Response(status=400, data={'message': '이메일 토큰 SNS 토큰이 없습니다.'})
 
-        data = {}
+        data = dict()
         data['nickname'] = nickname
         data['login_type'] = login_type
 
-        if login_type > '0':
+        if login_type == 'facebook':
             # Todo: SNS 계정 체크
             pass
 

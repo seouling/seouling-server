@@ -25,7 +25,7 @@ SECRET_KEY = 'ih$rp1l$am6p@ezw36fz$k_4r+_zlt@mmkwme9d2r$#qp3*pfp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'seouling.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'seouling-server.herokuapp.com']
 
 
 # Application definition
@@ -139,7 +139,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-ROOT_DIR = os.path.dirname(BASE_DIR)
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
