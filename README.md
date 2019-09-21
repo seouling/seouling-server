@@ -1,6 +1,6 @@
 # seouling-server
-서울 앱 공모전 서울링 서버
-
+서울 앱 공모전 서울링 서버<br/>
+API SERVER URL: https://seouling-server.herokuapp.com/<br/>
 API Docs
 -------------------
 [/auth/token](#authtoken)<br/>
@@ -148,7 +148,7 @@ Get Plans
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -422,7 +422,7 @@ Search Spot from tag
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -473,7 +473,7 @@ Search Spot from name
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -547,7 +547,7 @@ Get Spot's message
 **param**
 ```
 {
-  "last_id": Integer
+  "page": Integer
 }
 ```
 
@@ -557,8 +557,7 @@ Get Spot's message
   "data": [
     {
       "id": Integer,
-      "author_name": String,  
-      "author_picture": String,  
+      "author": User,
       "content": String,
       "created_date": String
     }
@@ -618,13 +617,16 @@ Get MySeoul Info
 **response**
 ```
 {
-  "data": [
-    {
-      "order": Number,
-      "picture": String
+    "data": {
+        "checked": [
+            Spot
+        ],
+        "not_checked": [
+            Spot
+        ],
+        "amount_count": Integer,
+        "visit_count": Integer
     }
-    ...
-  ]
 }
 ```
 
