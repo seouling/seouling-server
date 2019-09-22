@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls import url
 from .schema_view import schema_view
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
