@@ -55,8 +55,8 @@ class Schedule(models.Model):
 class Spot(models.Model):
     gu = models.IntegerField(default=0)
     category = models.IntegerField(default=0)
-    kr_name = models.CharField(max_length=100)
-    en_name = models.CharField(max_length=100)
+    kr_name = models.CharField(max_length=100, unique=True)
+    en_name = models.CharField(max_length=100, unique=True)
     kr_content = models.TextField()
     en_content = models.TextField()
     kr_operation = models.CharField(max_length=50)
@@ -69,6 +69,9 @@ class Spot(models.Model):
     homepage = models.CharField(max_length=100)
     kr_address = models.CharField(max_length=100)
     en_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.kr_name}({self.en_name})"
 
 
 def spot_image_upload(instance, filename):
@@ -83,18 +86,7 @@ def spot_image_upload(instance, filename):
 
 class SpotPicture(models.Model):
     spot = models.ForeignKey('Spot', related_name='pictures', on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to=spot_image_upload, null=True)
-
-    def save(self, *args, **kwargs):
-        if self.id is None:
-            saved_image = self.picture
-            self.picture = None
-            super(SpotPicture, self).save(*args, **kwargs)
-            self.picture = saved_image
-            if 'force_insert' in kwargs:
-                kwargs.pop('force_insert')
-
-        super(SpotPicture, self).save(*args, **kwargs)
+    picture = models.CharField(max_length=100)
 
 
 class SpotTag(models.Model):
