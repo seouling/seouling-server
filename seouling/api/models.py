@@ -52,15 +52,6 @@ class Schedule(models.Model):
     night = models.ManyToManyField('Spot', related_name="night")
 
 
-class Tag(models.Model):
-    bundle_name = models.CharField(max_length=50)
-
-
-class TagItem(models.Model):
-    bundle = models.ForeignKey(Tag, related_name="items", on_delete=models.CASCADE)
-    content = models.CharField(max_length=50)
-
-
 class Spot(models.Model):
     gu = models.IntegerField(default=0)
     category = models.IntegerField(default=0)
@@ -104,6 +95,11 @@ class SpotPicture(models.Model):
                 kwargs.pop('force_insert')
 
         super(SpotPicture, self).save(*args, **kwargs)
+
+
+class SpotTag(models.Model):
+    spot = models.ForeignKey(Spot, related_name="tags", on_delete=models.CASCADE)
+    tag_id = models.IntegerField()
 
 
 class Comment(models.Model):

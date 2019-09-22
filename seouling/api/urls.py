@@ -4,7 +4,7 @@ urlpatterns = [
     path('', include('api.plan.urls')),
     path('', include('api.auth.urls')),
     path('', include('api.schedule.urls')),
-    path('', include('api.tag.urls')),
+    # path('', include('api.tag.urls')),
     path('', include('api.spot.urls')),
     path('', include('api.me.urls')),
     path('', include('api.myseoul.urls')),

@@ -290,28 +290,28 @@ Get Plan's schedule
     "date": String,
     "morning": [
       {
-        "spot_id": Integer,
-        "scheme": String,
-        "picture": String,
-        "name": String
+        "id": 2,
+        "name": String,
+        "subway": String,
+        "picture": String
       },
       ...
     ]
     "after_noon": [
       {
-        "spot_id": Integer,
-        "scheme": String,
-        "picture": String,
-        "name": String
+        "id": 2,
+        "name": String,
+        "subway": String,
+        "picture": String
       },
       ...
     ]
     "night": [
       {
-        "spot_id": Integer,
-        "scheme": String,
-        "picture": String,
-        "name": String
+        "id": 2,
+        "name": String,
+        "subway": String,
+        "picture": String
       },
       ...
     ]

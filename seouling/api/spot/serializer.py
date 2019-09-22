@@ -14,6 +14,7 @@ class SpotSerializer(serializers.ModelSerializer):
     operation = serializers.SerializerMethodField()
     subway = serializers.SerializerMethodField()
     address = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()
     visitor = serializers.IntegerField()
     like = serializers.IntegerField()
 
@@ -38,10 +39,14 @@ class SpotSerializer(serializers.ModelSerializer):
     def get_address(self, obj):
         return obj.kr_address if self.context['locale'] == "kr" else obj.en_address
 
+    def get_tags(self, obj):
+        tags = obj.tags.all()
+        return map(lambda tag: kr_tag[tag.tag_id] if self.context['locale'] == 'kr' else en_tag[tag.tag_id], tags)
+
     class Meta:
         model = Spot
         fields = ('id', 'gu', 'category', 'name', "content", "operation", "recommend_time",
-                  'subway', "line", "phone", "homepage", "address", 'pictures', 'like', 'visitor')
+                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor')
 
 
 class SpotSimpleSerializer(serializers.ModelSerializer):
