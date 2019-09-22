@@ -11,15 +11,18 @@ class MySeoulView(APIView):
         if gu is None:
             raise ParseError('구를 입력해주세요.')
 
+        gu = int(gu)
         amount_count = Spot.objects.count()
         visit_count = request.user.visits.count()
 
         checked_spots = Spot.objects.filter(gu=gu, visits__user_id=request.user).all()
-        not_checked_spots = Spot.objects.filter(gu=gu, visits__user_id=None).all()
+        not_checked_spots = Spot.objects.filter(gu=gu).exclude(visits__user_id=request.user).all()
+
+        locale = request.META.get('HTTP_LOCALE')
 
         return Response(status=200, data={'data': {
-            'checked': SpotMySeoulSerializer(checked_spots, many=True).data,
-            'not_checked': SpotMySeoulSerializer(not_checked_spots, many=True).data,
+            'checked': SpotMySeoulSerializer(checked_spots, many=True, context={"locale": locale}).data,
+            'not_checked': SpotMySeoulSerializer(not_checked_spots, many=True, context={"locale": locale}).data,
             'amount_count': amount_count,
             'visit_count': visit_count
         }})

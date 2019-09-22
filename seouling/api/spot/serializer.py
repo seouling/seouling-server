@@ -69,6 +69,10 @@ class SpotSimpleSerializer(serializers.ModelSerializer):
 
 
 class SpotMySeoulSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+
+    def get_name(self, obj):
+        return obj.kr_name if self.context['locale'] == "kr" else obj.en_name
 
     class Meta:
         model = Spot
