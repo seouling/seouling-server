@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('api.spot.urls')),
     path('', include('api.me.urls')),
     path('', include('api.myseoul.urls')),
+    path('', include('api.search.urls')),
     path('parsing', Parsing.as_view()),
 ]

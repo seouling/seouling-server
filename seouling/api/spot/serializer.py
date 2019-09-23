@@ -52,6 +52,7 @@ class SpotSerializer(serializers.ModelSerializer):
 class SpotSimpleSerializer(serializers.ModelSerializer):
     picture = serializers.SerializerMethodField()
     name = serializers.SerializerMethodField()
+    content = serializers.SerializerMethodField()
     subway = serializers.SerializerMethodField()
 
     def get_name(self, obj):
@@ -60,12 +61,15 @@ class SpotSimpleSerializer(serializers.ModelSerializer):
     def get_subway(self, obj):
         return obj.kr_subway if self.context['locale'] == "kr" else obj.en_subway
 
+    def get_content(self, obj):
+        return obj.kr_content if self.context['locale'] == "kr" else obj.en_content
+
     def get_picture(self, obj):
-        return obj.pictures.first()
+        return obj.pictures.first().picture
 
     class Meta:
         model = Spot
-        fields = ('id', 'name', 'subway', 'picture')
+        fields = ('id', 'name', 'subway', 'content', 'picture')
 
 
 class SpotMySeoulSerializer(serializers.ModelSerializer):

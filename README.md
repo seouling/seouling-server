@@ -430,10 +430,11 @@ Search Spot from tag
 ```
 {
   "tag": [
-    {
-      "id": Integer,
-      "selected": String
-    },
+    Integer,
+    ...
+  ],
+  "gu": [
+    Integer,
     ...
   ]
 }
@@ -444,25 +445,11 @@ Search Spot from tag
 {
   "data": [
     {
-        "id": 1,
-        "gu": "동대문구",
-        "category": "엔터테인먼트",
-        "name": "남산",
-        "content": "내용",
-        "operation": "12:00~13:00",
-        "recommend_time": "12:00-13:00",
-        "subway": "삼성",
-        "line": "1/5",
-        "phone": "01066555744",
-        "homepage": "http://121212.com",
-        "address": "서울",
-        "pictures": [],
-        "tags": [
-            "친구끼리",
-            "핫플레이스"
-        ],
-        "like": 0,
-        "visitor": 1
+        "id": Integer,
+        "name": String,
+        "subway": String,
+        "content": String
+        "picture": String
      }
     ]
 
@@ -503,25 +490,11 @@ Search Spot from name
 {
   "data": [
     {
-        "id": 1,
-        "gu": "동대문구",
-        "category": "엔터테인먼트",
-        "name": "남산",
-        "content": "내용",
-        "operation": "12:00~13:00",
-        "recommend_time": "12:00-13:00",
-        "subway": "삼성",
-        "line": "1/5",
-        "phone": "01066555744",
-        "homepage": "http://121212.com",
-        "address": "서울",
-        "pictures": [],
-        "tags": [
-            "친구끼리",
-            "핫플레이스"
-        ],
-        "like": 0,
-        "visitor": 1
+        "id": Integer,
+        "name": String,
+        "subway": String,
+        "content": String
+        "picture": String
      }
     ],
 
