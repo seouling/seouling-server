@@ -169,8 +169,10 @@ Get Plans
   ],
 
   "paging": {
-    "after": String,
-    "before": String
+    "after": Integer,
+    "before": Integer,
+    "count": Integer,
+    "per_page": 10
   }
 }
 ```
@@ -317,8 +319,8 @@ Get Plan's schedule
     ]
   },
   "paging": {
-    "before":String,
-    "after": String,
+    "before":Integer,
+    "after": Integer,
     "count": Integer,
     "per_page": 3
   }
@@ -472,8 +474,10 @@ Search Spot from tag
     ]
 
   "paging": {
-    "after": String,
-    "before": String
+    "after": Integer,
+    "before": Integer,
+    "count": Integer,
+    "per_page": Integer
   }
 }
 ```
@@ -517,8 +521,10 @@ Search Spot from name
     ],
 
   "paging": {
-    "after": String,
-    "before": String
+    "after": Integer,
+    "before": Integer,
+    "count": Integer,
+    "per_page": 10
   }
 }
 ```
@@ -597,8 +603,10 @@ Get Spot's message
   ],
 
   "paging": {
-    "after": String,
-    "before": String
+    "after": Integer,
+    "before": Integer,
+    "count": Integer,
+    "per_page": 10
   }
 }
 ```

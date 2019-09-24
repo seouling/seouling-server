@@ -4,6 +4,8 @@ from api.models import User
 from rest_framework.permissions import AllowAny
 import hashlib
 from api.auth.serializer import UserSerializer
+from django.db.utils import IntegrityError
+from rest_framework.exceptions import ParseError
 
 
 class Signup(APIView):
@@ -26,6 +28,14 @@ class Signup(APIView):
         data['nickname'] = nickname
         data['login_type'] = login_type
 
+        is_exists = User.objects.filter(email=email).exists()
+        if is_exists:
+            raise ParseError('이미 존재하는 이메일입니다.')
+
+        is_exists = User.objects.filter(nickname=nickname).exists()
+        if is_exists:
+            raise ParseError('이미 존재하는 닉네임입니다.')
+
         if login_type == 'facebook':
             # Todo: SNS 계정 체크
             pass
@@ -43,5 +53,4 @@ class Signup(APIView):
 
         user = User(**data)
         user.save()
-
         return Response(status=200, data={'data': UserSerializer(user).data})
