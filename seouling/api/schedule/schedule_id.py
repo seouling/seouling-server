@@ -9,21 +9,20 @@ class ScheduleIdView(APIView):
 
     def put(self, request, schedule_id):
         try:
-            schedule = Schedule.objects.get(plan_id=schedule_id)
+            schedule = Schedule.objects.get(id=schedule_id)
         except Schedule.DoesNotExist:
             raise NotFound('해당 id로 찾을 수 없습니다.')
 
-        type = request.data.get('type')
-        add_list = request.data.get('add', [])
-        remove_list = request.data.get('remove', [])
+        for key, value in request.data.items():
+            add_list = value.get('add', [])
+            remove_list = value.get('remove', [])
 
-        if type is None:
-            return Response(status=400, data={'message': 'type을 설정해주세요.'})
+            for item in add_list:
+                getattr(schedule, key).add(item)
 
-        for item in add_list:
-            getattr(schedule, type).add(item)
+            for item in remove_list:
+                getattr(schedule, key).remove(item)
 
-        for item in remove_list:
-            getattr(schedule, type).remove(item)
+        locale = request.META.get('HTTP_LOCALE')
 
-        return Response(status=200, data={'data': ScheduleSerializer(schedule).data})
+        return Response(status=200, data={'data': ScheduleSerializer(schedule, context={'locale': locale}).data})

@@ -24,6 +24,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_authenticated = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"{self.id}: {self.nickname}"
+
     def save(self, *args, **kwargs):
         if self.id is None:
             saved_image = self.profile_picture
@@ -71,7 +74,7 @@ class Spot(models.Model):
     en_address = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.kr_name}({self.en_name})"
+        return f"{self.id}.{self.kr_name}({self.en_name})"
 
 
 def spot_image_upload(instance, filename):

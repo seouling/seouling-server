@@ -315,6 +315,13 @@ Get Plan's schedule
       },
       ...
     ]
+  },
+  "paging": {
+    "before":String,
+    "after": String,
+    "count": Integer,
+    "per_page": 3
+  }
 }
 ```
 
@@ -337,9 +344,20 @@ Edit Plan's schedule
 **request**
 ```
 {
-  "type": "morning" / "after_noon" / "night",
-  "add": List(Integer),
-  "remove": List(Integer)
+  "morning": {
+    "add": List(Spot id),
+    "remove": List(Spot id)
+  },
+  
+  "after_noon": {
+    "add": List(Spot id),
+    "remove": List(Spot id)
+  },
+  
+  "dinner": {
+    "add": List(Spot id),
+    "remove": List(Spot id)
+  }
 }
 ```
 
