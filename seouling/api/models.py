@@ -96,6 +96,9 @@ class SpotTag(models.Model):
     spot = models.ForeignKey(Spot, related_name="tags", on_delete=models.CASCADE)
     tag_id = models.IntegerField()
 
+    class Meta:
+        unique_together = ('spot', 'tag_id',)
+
 
 class Comment(models.Model):
     spot = models.ForeignKey('Spot', related_name="comments", on_delete=models.CASCADE)
@@ -110,8 +113,14 @@ class Like(models.Model):
     user = models.ForeignKey('User', related_name="likes", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('spot', 'user',)
+
 
 class Visit(models.Model):
     spot = models.ForeignKey('Spot', related_name="visits", on_delete=models.CASCADE)
     user = models.ForeignKey('User', related_name="visits", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('spot', 'user',)
