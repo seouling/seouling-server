@@ -19,29 +19,29 @@ class SpotSerializer(serializers.ModelSerializer):
     like = serializers.IntegerField()
 
     def get_gu(self, obj):
-        return kr_gu[obj.gu] if self.context['locale'] == "kr" else en_gu[obj.gu]
+        return kr_gu[obj.gu] if self.context['locale'] == "ko" else en_gu[obj.gu]
 
     def get_category(self, obj):
-        return kr_category[obj.category] if self.context['locale'] == "kr" else en_category[obj.category]
+        return kr_category[obj.category] if self.context['locale'] == "ko" else en_category[obj.category]
 
     def get_name(self, obj):
-        return obj.kr_name if self.context['locale'] == "kr" else obj.en_name
+        return obj.kr_name if self.context['locale'] == "ko" else obj.en_name
 
     def get_content(self, obj):
-        return obj.kr_content if self.context['locale'] == "kr" else obj.en_content
+        return obj.kr_content if self.context['locale'] == "ko" else obj.en_content
 
     def get_operation(self, obj):
-        return obj.kr_operation if self.context['locale'] == "kr" else obj.en_operation
+        return obj.kr_operation if self.context['locale'] == "ko" else obj.en_operation
 
     def get_subway(self, obj):
-        return obj.kr_subway if self.context['locale'] == "kr" else obj.en_subway
+        return obj.kr_subway if self.context['locale'] == "ko" else obj.en_subway
 
     def get_address(self, obj):
-        return obj.kr_address if self.context['locale'] == "kr" else obj.en_address
+        return obj.kr_address if self.context['locale'] == "ko" else obj.en_address
 
     def get_tags(self, obj):
         tags = obj.tags.all()
-        return map(lambda tag: kr_tag[tag.tag_id] if self.context['locale'] == 'kr' else en_tag[tag.tag_id], tags)
+        return map(lambda tag: kr_tag[tag.tag_id] if self.context['locale'] == 'ko' else en_tag[tag.tag_id], tags)
 
     class Meta:
         model = Spot
@@ -56,13 +56,13 @@ class SpotSimpleSerializer(serializers.ModelSerializer):
     subway = serializers.SerializerMethodField()
 
     def get_name(self, obj):
-        return obj.kr_name if self.context['locale'] == "kr" else obj.en_name
+        return obj.kr_name if self.context['locale'] == "ko" else obj.en_name
 
     def get_subway(self, obj):
-        return obj.kr_subway if self.context['locale'] == "kr" else obj.en_subway
+        return obj.kr_subway if self.context['locale'] == "ko" else obj.en_subway
 
     def get_content(self, obj):
-        return obj.kr_content if self.context['locale'] == "kr" else obj.en_content
+        return obj.kr_content if self.context['locale'] == "ko" else obj.en_content
 
     def get_picture(self, obj):
         return obj.pictures.first().picture
@@ -76,7 +76,7 @@ class SpotMySeoulSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
 
     def get_name(self, obj):
-        return obj.kr_name if self.context['locale'] == "kr" else obj.en_name
+        return obj.kr_name if self.context['locale'] == "ko" else obj.en_name
 
     class Meta:
         model = Spot
