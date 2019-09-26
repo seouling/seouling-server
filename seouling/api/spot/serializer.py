@@ -27,6 +27,8 @@ class SpotSerializer(serializers.ModelSerializer):
     like = serializers.IntegerField()
     pictures = serializers.SerializerMethodField()
     comments = CommentSerializer(many=True)
+    my_visit = serializers.BooleanField()
+    my_like = serializers.BooleanField()
 
     def get_gu(self, obj):
         return kr_gu[obj.gu] if self.context['locale'] == "ko" else en_gu[obj.gu]
@@ -59,7 +61,8 @@ class SpotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spot
         fields = ('id', 'gu', 'category', 'name', "content", "operation", "recommend_time",
-                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor', 'comments')
+                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor', 'comments',
+                  'my_like', 'my_visit')
 
 
 class SpotSimpleSerializer(serializers.ModelSerializer):

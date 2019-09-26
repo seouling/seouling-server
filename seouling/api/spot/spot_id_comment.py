@@ -11,7 +11,7 @@ class SpotIdCommentView(APIView):
 
     def get(self, request, spot_id):
         page = request.query_params.get('page', 1)
-        comment_query = Comment.objects.filter(spot_id=spot_id)
+        comment_query = Comment.objects.filter(spot_id=spot_id).order_by('-id')
         paginator = Paginator(comment_query, 10)
         page = paginator.page(page)
         page.count = paginator.count

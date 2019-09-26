@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from api.models import Plan
-from django.db.models import Prefetch
 
 
 class PlanSerializer(serializers.ModelSerializer):
@@ -11,7 +10,7 @@ class PlanSerializer(serializers.ModelSerializer):
             schedule = obj.schedules.first()
             morning_spot = schedule.morning.first()
             picture = morning_spot.pictures.first().picture
-            return picture.url
+            return picture
         except AttributeError:
             return ""
 

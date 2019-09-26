@@ -572,11 +572,13 @@ Get Spot
         "comments": [
         {
           "id": Integer,
-          "author": User,
+          "writer": User,
           "content": String,
           "created_date": String,
           "score": Integer
-        }
+        },
+        "my_like": Boolean,
+        "my_visit": Boolean
     }
 }
 ```
