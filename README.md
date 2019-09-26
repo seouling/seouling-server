@@ -15,6 +15,8 @@ API Docs
 [/spot/search/tag](#spotsearchtag)<br/>
 [/spot/search/name](#spotsearchname)<br/>
 [/spot/{spot_id}](#spotspot_id)<br/>
+[/spot/{spot_id}/like](#spotspot_idlike)<br/>
+[/spot/{spot_id}/visit](#spotspot_idvisit)<br/>
 [/spot/{spot_id}/comment](#spotspot_idcomment)<br/>
 [/myseoul](#myseoul)<br/>
 [/me](#mypage)<br/>
