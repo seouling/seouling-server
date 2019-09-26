@@ -12,4 +12,4 @@ class UserSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ('password', 'token', 'sns_token', 'is_push', 'last_login',
-                   'created_at', 'is_authenticated', 'login_type')
+                   'created_at', 'is_authenticated', 'login_type', 'profile_picture')

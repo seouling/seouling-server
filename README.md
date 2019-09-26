@@ -579,6 +579,54 @@ Get Spot
 }
 ```
 
+## /spot/{spot_id}/like
+#### -POST
+장소 좋아요 (한번부르면 체크 두번부르면 삭제)
+
+**header**
+
+|Key|Value|
+|---|-----|
+|Content-Type| application/json |
+|Authorization| Bearer token |
+
+**param**
+```
+{
+}
+```
+
+**response**
+```
+{
+  "message": "success"
+}
+```
+
+## /spot/{spot_id}/visit
+#### -POST
+마이서울 방문 (아무리 불러도 한번만 체크댐)
+
+**header**
+
+|Key|Value|
+|---|-----|
+|Content-Type| application/json |
+|Authorization| Bearer token |
+
+**param**
+```
+{
+}
+```
+
+**response**
+```
+{
+  "message": "success"
+}
+```
+
 ## /spot/{spot_id}/comment
 #### -GET
 Get Spot's message
@@ -632,7 +680,8 @@ Post Spot's message
 **request**
 ```
 {
-  "content": String
+  "content": String,
+  "score": Integer
 }
 ```
 
@@ -642,6 +691,7 @@ Post Spot's message
   "data": {
     "author": User,  
     "content": String,
+    "score": Integer,
     "created_date": String
   }
 }

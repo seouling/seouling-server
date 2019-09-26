@@ -4,7 +4,6 @@ from api.models import User
 from rest_framework.permissions import AllowAny
 import hashlib
 from api.auth.serializer import UserSerializer
-from django.db.utils import IntegrityError
 from rest_framework.exceptions import ParseError
 
 

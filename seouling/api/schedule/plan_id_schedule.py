@@ -1,10 +1,9 @@
-from django.db.models import Prefetch
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.schedule.serializer import ScheduleSerializer
 from django.core.paginator import Paginator
 from utils.page_serializer import PageSerializer
-from api.models import Schedule, Spot
+from api.models import Schedule
 
 
 class PlanScheduleView(APIView):
