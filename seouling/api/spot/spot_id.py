@@ -10,7 +10,7 @@ class SpotIdView(APIView):
 
     def get(self, request, spot_id):
         try:
-            spot = Spot.objects.prefetch_related("pictures", "tags")\
+            spot = Spot.objects.prefetch_related("pictures", "tags", "comments")\
                 .annotate(like=Count('likes'), visitor=Count('visits')).get(id=spot_id)
         except Spot.DoesNotExist:
             raise NotFound('해당 id로 찾을 수 없습니다.')

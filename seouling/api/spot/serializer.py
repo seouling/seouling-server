@@ -1,9 +1,17 @@
 from rest_framework import serializers
-from api.models import Spot, Comment
+from api.models import Spot, Comment, SpotPicture
 from api.auth.serializer import UserSimpleSerializer
 from utils.gu import kr_gu, en_gu
 from utils.category import kr_category, en_category
 from utils.tag import kr_tag, en_tag
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    writer = UserSimpleSerializer()
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'content', 'created_at', 'writer', 'score')
 
 
 class SpotSerializer(serializers.ModelSerializer):
@@ -17,6 +25,8 @@ class SpotSerializer(serializers.ModelSerializer):
     tags = serializers.SerializerMethodField()
     visitor = serializers.IntegerField()
     like = serializers.IntegerField()
+    pictures = serializers.SerializerMethodField()
+    comments = CommentSerializer(many=True)
 
     def get_gu(self, obj):
         return kr_gu[obj.gu] if self.context['locale'] == "ko" else en_gu[obj.gu]
@@ -43,10 +53,13 @@ class SpotSerializer(serializers.ModelSerializer):
         tags = obj.tags.all()
         return map(lambda tag: kr_tag[tag.tag_id] if self.context['locale'] == 'ko' else en_tag[tag.tag_id], tags)
 
+    def get_pictures(self, obj):
+        return map(lambda picture: picture.picture, obj.pictures.all())
+
     class Meta:
         model = Spot
         fields = ('id', 'gu', 'category', 'name', "content", "operation", "recommend_time",
-                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor')
+                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor', 'comments')
 
 
 class SpotSimpleSerializer(serializers.ModelSerializer):
@@ -82,10 +95,3 @@ class SpotMySeoulSerializer(serializers.ModelSerializer):
         model = Spot
         fields = ('id', 'name', 'gu', 'category')
 
-
-class CommentSerializer(serializers.ModelSerializer):
-    writer = UserSimpleSerializer()
-
-    class Meta:
-        model = Comment
-        fields = ('id', 'content', 'created_at', 'writer')

@@ -566,7 +566,15 @@ Get Spot
             "핫플레이스"
         ],
         "like": 0,
-        "visitor": 1
+        "visitor": 1,
+        "comments": [
+        {
+          "id": Integer,
+          "author": User,
+          "content": String,
+          "created_date": String,
+          "score": Integer
+        }
     }
 }
 ```
