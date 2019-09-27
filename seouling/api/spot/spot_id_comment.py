@@ -36,4 +36,4 @@ class SpotIdCommentView(APIView):
         comment = Comment(spot_id=spot_id, writer=request.user, content=content, score=score)
         comment.save()
 
-        return Response(status=200, data={'message': CommentSerializer(comment)})
+        return Response(status=200, data={'message': CommentSerializer(comment).data})

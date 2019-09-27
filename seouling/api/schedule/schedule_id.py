@@ -14,14 +14,9 @@ class ScheduleIdView(APIView):
             raise NotFound('해당 id로 찾을 수 없습니다.')
 
         for key, value in request.data.items():
-            add_list = value.get('add', [])
-            remove_list = value.get('remove', [])
-
-            for item in add_list:
-                getattr(schedule, key).add(item)
-
-            for item in remove_list:
-                getattr(schedule, key).remove(item)
+            getattr(schedule, key).clear()
+            for spot in value:
+                getattr(schedule, key).add(spot)
 
         locale = request.META.get('HTTP_LOCALE')
 
