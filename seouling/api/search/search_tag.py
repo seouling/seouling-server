@@ -21,13 +21,16 @@ class SearchTag(APIView):
         tags = request.data.get('tags', [])
         page = request.query_params.get('page', 1)
 
-        if len(gu) == 0:
-            gu = [i for i in range(len(kr_gu))]
-
         if len(tags) == 0:
             tags = [-1]
-        spot_query = Spot.objects.filter(gu__in=gu)\
-            .annotate(
+
+        if len(gu) == 0:
+            spot_query = Spot.objects.all()
+
+        else:
+            spot_query = Spot.objects.filter(gu__in=gu)
+
+        spot_query = spot_query.annotate(
                 rank=SQCount(SpotTag.objects.filter(spot_id=OuterRef("pk"), tag_id__in=tags).values('pk'))
             ).order_by('-rank')
 
