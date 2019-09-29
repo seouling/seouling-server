@@ -24,6 +24,7 @@ class Parsing(APIView):
 
         for index, row in df.iterrows():
             data = dict()
+            data['id'] = index + 1
             data['category'] = kr_category.index(row['카테고리'])
             data['kr_name'] = row['장소명']
             data['en_name'] = row['영문 장소명']
@@ -39,6 +40,10 @@ class Parsing(APIView):
             data['homepage'] = row['홈페이지 (Website)']
             data['kr_address'] = row['주소']
             data['en_address'] = row['영문주소']
+
+            pos = row['좌표'].split(',')
+            data['x_pos'] = pos[0]
+            data['y_pos'] = pos[1]
 
             for index, gu in enumerate(kr_gu):
                 if gu in data['kr_address']:
