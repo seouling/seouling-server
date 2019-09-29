@@ -452,7 +452,7 @@ Search Spot from tag
 **request**
 ```
 {
-  "tag": [
+  "tags": [
     Integer,
     ...
   ],
