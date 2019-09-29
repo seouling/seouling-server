@@ -72,8 +72,8 @@ class Spot(models.Model):
     homepage = models.CharField(max_length=100)
     kr_address = models.CharField(max_length=100)
     en_address = models.CharField(max_length=100)
-    x_pos = models.CharField(max_length=100)
-    y_pos = models.CharField(max_length=100)
+    lat = models.CharField(max_length=100)
+    lng = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.id}.{self.kr_name}({self.en_name})"

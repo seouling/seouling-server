@@ -18,6 +18,7 @@ API Docs
 [/spot/{spot_id}/like](#spotspot_idlike)<br/>
 [/spot/{spot_id}/visit](#spotspot_idvisit)<br/>
 [/spot/{spot_id}/comment](#spotspot_idcomment)<br/>
+[/spot/coordinate](#spotcoordinate)<br/>
 [/myseoul](#myseoul)<br/>
 [/me](#mypage)<br/>
 
@@ -704,6 +705,32 @@ Post Spot's message
     "score": Integer,
     "created_date": String
   }
+}
+```
+
+## /spot/coordinate
+#### -GET
+Get Spot coordinate
+
+**header**
+
+|Key|Value|
+|---|-----|
+|Content-Type| application/json |
+|Authorization| Bearer token |
+
+**param**
+```
+```
+
+**response**
+```
+{
+  "data": [
+    id: Integer,
+    lat: String,
+    lng: String
+  ]
 }
 ```
 
