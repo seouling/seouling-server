@@ -470,8 +470,10 @@ Search Spot from tag
         "id": Integer,
         "name": String,
         "subway": String,
-        "content": String
-        "picture": String
+        "content": String,
+        "picture": String,
+        "x_pos": String,
+        "y_pos": String
      }
     ]
 
@@ -517,8 +519,10 @@ Search Spot from name
         "id": Integer,
         "name": String,
         "subway": String,
-        "content": String
-        "picture": String
+        "content": String,
+        "picture": String,
+        "x_pos": String,
+        "y_pos": String,
      }
     ],
 
@@ -578,7 +582,9 @@ Get Spot
           "score": Integer
         },
         "my_like": Boolean,
-        "my_visit": Boolean
+        "my_visit": Boolean,
+        "x_pos": String,
+        "y_pos": String
     }
 }
 ```

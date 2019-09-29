@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Spot, Comment, SpotPicture
+from api.models import Spot, Comment
 from api.auth.serializer import UserSimpleSerializer
 from utils.gu import kr_gu, en_gu
 from utils.category import kr_category, en_category
@@ -61,8 +61,8 @@ class SpotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spot
         fields = ('id', 'gu', 'category', 'name', "content", "operation", "recommend_time",
-                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'like', 'visitor', 'comments',
-                  'my_like', 'my_visit')
+                  'subway', "line", "phone", "homepage", "address", 'pictures', 'tags', 'x_pos', 'y_pos',
+                  'like', 'visitor', 'comments', 'my_like', 'my_visit')
 
 
 class SpotSimpleSerializer(serializers.ModelSerializer):
@@ -85,7 +85,7 @@ class SpotSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Spot
-        fields = ('id', 'name', 'subway', 'content', 'picture')
+        fields = ('id', 'name', 'subway', 'content', 'picture', 'x_pos', 'y_pos')
 
 
 class SpotMySeoulSerializer(serializers.ModelSerializer):
@@ -96,5 +96,5 @@ class SpotMySeoulSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Spot
-        fields = ('id', 'name', 'gu', 'category')
+        fields = ('id', 'name', 'gu', 'category', 'x_pos', 'y_pos')
 
