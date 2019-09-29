@@ -6,7 +6,6 @@ from django.db import models
 from django.core.paginator import Paginator
 from utils.page_serializer import PageSerializer
 from django.db.models import Subquery, OuterRef
-from utils.gu import kr_gu
 
 
 class SQCount(Subquery):

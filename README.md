@@ -730,9 +730,7 @@ Get MySeoul Info
         ],
         "not_checked": [
             Spot
-        ],
-        "amount_count": Integer,
-        "visit_count": Integer
+        ]
     }
 }
 ```
