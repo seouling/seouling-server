@@ -18,7 +18,7 @@ class SearchTag(APIView):
     def post(self, request):
         gu = request.data.get('gu', [])
         tags = request.data.get('tags', [])
-        page = request.query_params.get('page', 1)
+        # page = request.query_params.get('page', 1)
 
         if len(tags) == 0:
             tags = [-1]
@@ -31,15 +31,15 @@ class SearchTag(APIView):
 
         spot_query = spot_query.annotate(
                 rank=SQCount(SpotTag.objects.filter(spot_id=OuterRef("pk"), tag_id__in=tags).values('pk'))
-            ).order_by('-rank')
+            ).prefetch_related('pictures').order_by('-rank').all()
 
-        paginator = Paginator(spot_query, 10)
-        page = paginator.page(page)
-        page.count = paginator.count
-        page.per_page = paginator.per_page
+        # paginator = Paginator(spot_query, 10)
+        # page = paginator.page(page)
+        # page.count = paginator.count
+        # page.per_page = paginator.per_page
 
         locale = request.META.get('HTTP_LOCALE')
         result = dict()
-        result['data'] = SpotSimpleSerializer(page.object_list, many=True, context={'locale': locale}).data
-        result['paging'] = PageSerializer(page, context={'request': request}).data
+        result['data'] = SpotSimpleSerializer(spot_query, many=True, context={'locale': locale}).data
+        # result['paging'] = PageSerializer(page, context={'request': request}).data
         return Response(status=200, data=result)
